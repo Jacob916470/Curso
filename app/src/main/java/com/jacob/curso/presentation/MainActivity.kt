@@ -1,8 +1,8 @@
-package com.jacob.curso
+package com.jacob.curso.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import com.jacob.curso.R
 
 /**Pendiente regreso repetitivo de pantallas*/
 class MainActivity : AppCompatActivity() {

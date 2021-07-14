@@ -1,14 +1,14 @@
-package com.jacob.curso
+package com.jacob.curso.presentation.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
+import com.jacob.curso.R
 
 class HomeFragment : Fragment() {
 

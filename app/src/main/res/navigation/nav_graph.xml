@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.jacob.curso.HomeFragment"
+        android:name="com.jacob.curso.presentation.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/catalogFragment"
-        android:name="com.jacob.curso.CatalogFragment"
+        android:name="com.jacob.curso.presentation.catalog.view.CatalogFragment"
         android:label="CatalogFragment"
         tools:layout="@layout/fragment_catalog"/>
 </navigation>
