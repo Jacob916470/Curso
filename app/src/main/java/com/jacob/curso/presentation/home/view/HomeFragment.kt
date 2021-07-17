@@ -7,10 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
 import com.jacob.curso.R
+import com.jacob.curso.data.database.CursoRoomDataBase
 import com.jacob.curso.databinding.FragmentHomeBinding
+import com.jacob.curso.presentation.home.viewModel.HomeViewModel
+import com.jacob.curso.presentation.home.viewModel.HomeViewModelFactory
 
 class HomeFragment : Fragment() {
 
@@ -34,6 +38,15 @@ class HomeFragment : Fragment() {
             container,
             false
         )
+
+        fragmentHomeBinding?.homeViewModel =
+            ViewModelProvider(
+                this,
+                HomeViewModelFactory(
+                    cursoRoomDataBase = CursoRoomDataBase.getDataBase(requireContext())
+                )
+            ).get(HomeViewModel::class.java)
+
         return fragmentHomeBinding?.root
     }
     /** Despues de validar, detecta que no hay nulos (Se pueden crear tanto onCreateView como en onViewCreated) */
