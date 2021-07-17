@@ -7,13 +7,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.jacob.curso.R
 import com.jacob.curso.presentation.catalog.model.Color
+import com.jacob.curso.presentation.core.callBack.OnItemClickListener
 
 class ColorAdapter(
-    private val colorList : List<Color>
+    private val colorList : List<Color>,
+    private val onItemClickListener: OnItemClickListener<Color>
 ):RecyclerView.Adapter<ColorAdapter.ColorViewHolder>(){
 
     /** Crea la vista del item que mostraremos en el recyclerView */
@@ -31,6 +34,9 @@ class ColorAdapter(
         color.hex?.let {
             holder.colorImage.setColorFilter(ContextCompat.getColor(holder.view.context,it))
         }
+        holder.container.setOnClickListener {
+            onItemClickListener.onItemClick(color)
+        }
     }
 
     /** Funcion que nos regresa un Entero (Tamaño de nuestra lista) */
@@ -40,6 +46,7 @@ class ColorAdapter(
     class ColorViewHolder(val view : View) : RecyclerView.ViewHolder(view){
         val nameColor = view.findViewById<TextView>(R.id.name)
         val colorImage = view.findViewById<AppCompatImageView>(R.id.colorImageView)
+        val container = view.findViewById<ConstraintLayout>(R.id.container)
         //val nameColor : TextView = view.findViewById(R.id.name)
     }
 }

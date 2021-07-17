@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -12,9 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jacob.curso.R
 import com.jacob.curso.databinding.FragmentCatalogBinding
 import com.jacob.curso.presentation.catalog.adapters.ColorAdapter
+import com.jacob.curso.presentation.catalog.model.Color
 import com.jacob.curso.presentation.catalog.viewModel.CatalogViewModel
+import com.jacob.curso.presentation.core.callBack.OnItemClickListener
 
-class CatalogFragment : Fragment() {
+class CatalogFragment : Fragment(), OnItemClickListener<Color> {
 
     private var fragmentCatalogBinding: FragmentCatalogBinding? = null
     var welcome = ""
@@ -56,10 +59,14 @@ class CatalogFragment : Fragment() {
                     /** Pasamos a nuestro recyclerView los componentes para su creación */
                     fragmentCatalogBinding?.rvColors?.apply {
                         layoutManager = LinearLayoutManager(context)
-                        adapter = ColorAdapter(colors)
+                        adapter = ColorAdapter(colors,this@CatalogFragment)
                     }
                 }
             }
         )
+    }
+
+    override fun onItemClick(item: Color, type: String?) {
+        Toast.makeText(context, "${item.name}", Toast.LENGTH_SHORT).show()
     }
 }
