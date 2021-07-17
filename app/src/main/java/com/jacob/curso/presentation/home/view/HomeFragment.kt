@@ -7,14 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
 import com.jacob.curso.R
+import com.jacob.curso.data.database.CursoRoomDataBase
 import com.jacob.curso.databinding.FragmentHomeBinding
+import com.jacob.curso.presentation.home.viewModel.HomeViewModel
+import com.jacob.curso.presentation.home.viewModel.HomeViewModelFactory
 
 class HomeFragment : Fragment() {
 
-    private var fragmentHomeBinding : FragmentHomeBinding? = null
+    private var fragmentHomeBinding: FragmentHomeBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +38,22 @@ class HomeFragment : Fragment() {
             container,
             false
         )
+
+        /** Mandamos a llamar a nuestra variable "fragmentHomeBinding?", despues entramos a nuestro homeViewModel(Vista xml) */
+        fragmentHomeBinding?.homeViewModel =
+
+            /** Nos brinda las vistas creadas */
+            ViewModelProvider(
+                this,
+
+                /** Accedemos a nuestra base de datos */
+                HomeViewModelFactory(
+                    cursoRoomDataBase = CursoRoomDataBase.getDataBase(requireContext())
+                )
+
+            /** Atraemos la vista del la clase "HomeViewModel" */
+            ).get(HomeViewModel::class.java)
+
         return fragmentHomeBinding?.root
     }
     /** Despues de validar, detecta que no hay nulos (Se pueden crear tanto onCreateView como en onViewCreated) */
