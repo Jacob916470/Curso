@@ -6,7 +6,6 @@ import com.jacob.curso.data.entities.User
 
 @Dao
 interface UserDao {
-
     /** Sirve para hacer una SELECT(Consulta), INSERT(Insertar), UPDATE(Actualizar), DELETE(Eliminar) */
     @Query("SELECT * from user")
 
